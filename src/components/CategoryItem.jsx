@@ -2,11 +2,16 @@ import { StyleSheet, Text, Pressable } from 'react-native'
 import Card from './Card.jsx';
 import { colors } from '../global/colors'
 
-const CategoryItem = ({ category, selectCategory= () => {} }) => {
+const CategoryItem = ({ category, navigation }) => {
+
+  const handleNavigate = () => {
+    navigation.navigate("ItemListCategory", {category})
+  }
+
   return (
     <Card style={styles.cardContainer}>
 
-      <Pressable onPress={()=>{selectCategory(category)}} >
+      <Pressable onPress={handleNavigate} >
         <Text style={styles.styleText}>{category} </Text>
       </Pressable>
       

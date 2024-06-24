@@ -1,42 +1,24 @@
-import {useCallback, useState} from "react"
-import { StyleSheet, View } from 'react-native';
-import Home from './src/screens/Home';
-import Header from "./src/components/Header.jsx";
-
-import * as SplashScreen from "expo-splash-screen";
+import { StyleSheet, StatusBar, Platform, View} from 'react-native';
 import { useFonts } from "expo-font";
-import ItemListCategory from "./src/screens/ItemListCategory.jsx";
+import Navigator from "./src/navigation/Navigator.jsx"
+
+import { Provider } from 'react-redux';
+import store from "./src/store/index.js"
 
 export default function App() {
 
-  // Configurar fuente
   const [fontsLoaded, fontError] = useFonts({
     "Kanit-regular": require("./assets/Kanit/Kanit-Regular.ttf"),
-    "Bebas-regular": require("./assets/Bebas_Neue/BebasNeue-Regular.ttf")
-  });
+    "Bebas-regular": require("./assets/Bebas_Neue/BebasNeue-Regular.ttf"),
+  }); // Configuracion fuentes
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded || fontError) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
-
-  const [ categorySelected, setCategorySelected] = useState("")
-
+  if (!fontsLoaded && !fontError) return null
 
   return (
     <View style={styles.container}>
-      <Header title="CATEGORÍAS" />
-
-      {/* Mostrar Home o categorya seleccionada. Operador ternario */}
-      {!categorySelected ? (
-        <Home setCategorySelected={setCategorySelected} />
-      ) : (
-        <ItemListCategory
-          setCategorySelected={setCategorySelected}
-          categorySelected={categorySelected}
-        />
-      )}
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
     </View>
   );
 }
@@ -44,9 +26,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    height: "100%",
-    width: "100%"
+    marginTop: Platform.OS === "android" ? StatusBar.currentHeight: 0,
+    backgroundColor: "white"
   },
 });

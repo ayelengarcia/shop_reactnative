@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent:"center",
     width: "100%",
-    height:"10%"
+    padding: 5
   },
   styleText: {
     fontFamily: "Bebas-regular",
