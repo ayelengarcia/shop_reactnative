@@ -2,9 +2,15 @@ import { StyleSheet, Text, Pressable } from 'react-native'
 import Card from './Card.jsx';
 import { colors } from '../global/colors'
 
+import { useDispatch } from 'react-redux';
+import { setCategorySelected } from '../features/shop/ShopSlice.js';
+
 const CategoryItem = ({ category, navigation }) => {
 
+  const dispatch = useDispatch()
+
   const handleNavigate = () => {
+    dispatch(setCategorySelected(category))
     navigation.navigate("ItemListCategory", {category})
   }
 
