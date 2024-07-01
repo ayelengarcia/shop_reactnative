@@ -2,8 +2,8 @@ import { StyleSheet, Text, View, FlatList } from 'react-native'
 import { useEffect, useState } from 'react'
 import ProductItem from "../components/ProductItem.jsx"
 
-import products from "../data/products.json"
 import Search from '../components/Search.jsx'
+import { useGetProductsByCategoryQuery } from '../services/shopServices.js'
 
 const ItemListCategory = ({
   navigation,
@@ -17,6 +17,9 @@ const ItemListCategory = ({
   //le pongo un alias a category para no renombrar categorySelected
   const { category: categorySelected } = route.params
 
+  const {data: productsFetched, error: errorFetched, isLoading} = useGetProductsByCategoryQuery(categorySelected);
+
+
   useEffect(() => {
     const regex = /[\d]/
     const Digits = (regex.test(keyword))
@@ -27,12 +30,12 @@ const ItemListCategory = ({
       return
     }
 
-    const productsPreFilter = products.filter((product) => product.category === categorySelected)
-
-    const productsFilter = productsPreFilter.filter((product) => product.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()))
-    
-    setProductFiltered(productsFilter)
-  }, [keyword, categorySelected])
+    if(!isLoading){
+      const productsFilter = productsFetched.filter((product) => product.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()))
+      setProductFiltered(productsFilter)
+    }
+   
+  }, [keyword, categorySelected, productsFetched, isLoading])
 
   const volver = () => {
     navigation.goBack()

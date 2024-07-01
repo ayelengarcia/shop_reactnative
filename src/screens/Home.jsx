@@ -1,15 +1,18 @@
 import { StyleSheet, View, FlatList } from 'react-native'
-import categories from "../data/categories.json"
+
+// import Counter from '../components/Counter.jsx'
 import CategoryItem from '../components/CategoryItem.jsx'
-import Counter from '../components/Counter.jsx'
+import { useGetCategoriesQuery } from '../services/shopServices.js'
 
 
 const Home = ({ navigation, route }) => {
+  const {data: categories} = useGetCategoriesQuery()
   
   return (
     <View style={styles.container}>
-      <Counter />
+      {/* <Counter /> */}
       <FlatList
+      showsVerticalScrollIndicator={false}
         keyExtractor={category => category}
         data={categories}
         style={styles.container_flatList}
