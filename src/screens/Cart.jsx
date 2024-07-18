@@ -1,25 +1,32 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native'
-import dataCart from "../data/cart.json"
+
 import CartItem from '../components/CartItem';
+import { useSelector } from 'react-redux';
+import { usePostOderMutation } from '../services/shopServices';
 
 const Cart = () => {
 
-  const sumaTotal = dataCart.reduce((total, numero) => {
-    return total + (numero.price * numero.quantity);
-  }, 0);
+  const { items: dataCart, total } = useSelector((state) => state.cart.value)
+  
+  const [ triggerPostOrder, result ] = usePostOderMutation()
+  
+  const handleCreateOrder = () => {
+    // Logica confirm order
+    triggerPostOrder({items: dataCart, user: "Brujula", total})
+  }
 
   return (
     <View style={styles.container}>
       <FlatList
         data={dataCart}
         renderItem={({ item }) => <CartItem cartItem={item} />}
-        keyExtractor={dataCart.id}
+        keyExtractor={(item) => item.id.toString()}
       />
 
       <View>
-        <Text style={styles.total}>Total: ${sumaTotal}</Text>
+        <Text style={styles.total}>Total: ${total}</Text>
 
-        <Pressable>
+        <Pressable onPress={handleCreateOrder}>
           <Text style={styles.textConfirm}>Confirmar orden</Text>
         </Pressable>
         

@@ -11,6 +11,8 @@ import {
 
 
 import { useGetProductByIdQuery } from "../services/shopServices";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../features/cart/CartSlice";
 
 const ItemDetail = ({
   navigation,
@@ -23,12 +25,19 @@ const ItemDetail = ({
   //le pongo un alias a category para no renombrar categorySelected
   const { productId: idSelected } = route.params
 
+  const dispatch = useDispatch()
+
   const {data: product}= useGetProductByIdQuery(idSelected)
 
   useEffect(() => {
     if (width > height) setOrientation("landscape")
     else setOrientation('portrait')
   }, [width, height])
+
+  const handleAddCart = () => {
+    dispatch(addCartItem)
+    dispatch(addCartItem({...product, quantity: 1}))
+  }
 
   return (
     <View>
@@ -52,7 +61,7 @@ const ItemDetail = ({
             <Text>{product.title}</Text>
             <Text>{product.description}</Text>
             <Text style={styles.price}>${product.price}</Text>
-            <Button title="Add cart"></Button>
+            <Button title="Add cart" onPress={handleAddCart}></Button>
           </View>
         </View>
       ) : null}
