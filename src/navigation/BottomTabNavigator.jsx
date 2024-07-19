@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { colors } from '../global/colors.js'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +8,7 @@ import CartStackNavigator from './CartStackNavigator.jsx'
 import OrderStackNavigator from './OrderStackNavigator.jsx'
 
 import Header from "../components/Header.jsx"
+import MyProfileStackNavigator from './MyProfileStackNavigator.jsx';
 
 
 const Tab = createBottomTabNavigator()
@@ -56,6 +57,18 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons name="receipt" size={26} color={focused ? "black" : "white"} />
+            )
+          }
+        }}
+      />
+
+      <Tab.Screen
+        name="Profile"
+        component={MyProfileStackNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons name="person-sharp" size={26} color={focused ? "black" : "white"} />
             )
           }
         }}

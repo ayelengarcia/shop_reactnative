@@ -17,7 +17,6 @@ export const cartSlice = createSlice({
         (item) => item.id === payload.id
       );
       if (productRepeated) {
-        console.log(productRepeated);
         const itemsUpdated = state.value.items.map((item) => {
           if (item.id === payload.id) {
             item.quantity += payload.quantity;
@@ -48,12 +47,52 @@ export const cartSlice = createSlice({
         };
       }
     },
+    removeOneCartItem: (state, { payload }) => {
+      const itemsUpdated = state.value.items
+        .map((item) => {
+          if (item.id === payload.id) {
+            if (item.quantity > 1) {
+              item.quantity -= 1;
+            } else {
+              return null;
+            }
+          }
+          return item;
+        })
+        .filter((item) => item !== null);
+
+      const total = itemsUpdated.reduce(
+        (acc, currentItem) => acc + currentItem.price * currentItem.quantity,
+        0
+      );
+
+      state.value = {
+        ...state.value,
+        items: itemsUpdated,
+        total,
+        updateAt: new Date().toLocaleString(),
+      };
+    },
+    //sin usar - agregas - 1 + para sumar y restar en CartItem
+    //Borra todo el item
     removeCartItem: (state, { payload }) => {
-      // Logica remover del cart
+      const itemsUpdated = state.value.items.filter(
+        (item) => item.id !== payload.id
+      );
+      const total = itemsUpdated.reduce(
+        (acc, currentItem) => acc + currentItem.price * currentItem.quantity,
+        0
+      );
+      state.value = {
+        ...state.value,
+        items: itemsUpdated,
+        total,
+        updateAt: new Date().toLocaleString(),
+      };
     },
   },
 });
 
-export const { addCartItem, removeCartItem } = cartSlice.actions;
+export const { addCartItem, removeCartItem, removeOneCartItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

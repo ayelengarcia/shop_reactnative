@@ -11,7 +11,6 @@ const Cart = () => {
   const [ triggerPostOrder, result ] = usePostOderMutation()
   
   const handleCreateOrder = () => {
-    // Logica confirm order
     triggerPostOrder({items: dataCart, user: "Brujula", total})
   }
 
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
   },
   total: {
     textAlign: "center",
-    fontSize: "26px"
+    fontSize: 26
   },
   textConfirm: {
     textAlign: "center",

@@ -21,9 +21,7 @@ const ItemDetail = ({
 
   const { width, height } = useWindowDimensions()
   const [orientation, setOrientation] = useState("portrait");
-
-  //le pongo un alias a category para no renombrar categorySelected
-  const { productId: idSelected } = route.params
+  const { productId: idSelected } = route.params //le pongo un alias a category para no renombrar categorySelected
 
   const dispatch = useDispatch()
 

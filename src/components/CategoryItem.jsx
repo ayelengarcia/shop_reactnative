@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 15,
     color: colors.p_black,
-    fontSize: "1.2rem",
+    fontSize: 16,
     fontFamily: "Kanit-regular"
   }
 })

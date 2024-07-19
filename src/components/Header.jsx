@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   styleText: {
     fontFamily: "Bebas-regular",
     color: colors.p_black,
-    fontSize: "1.8rem",
+    fontSize: 26,
     fontWeight: "400"
   }
 })
