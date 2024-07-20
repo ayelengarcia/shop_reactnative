@@ -2,10 +2,16 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import { useState } from 'react'
 
 import * as ImagePicker from 'expo-image-picker';
+import { useDispatch, useSelector } from 'react-redux';
+import { setImageUser } from '../features/user/UserSlice';
+import { usePostImageUserMutation } from '../services/shopServices';
 
-const ImageSelector = () => {
+const ImageSelector = ({navigation}) => {
 
   const [image, setImage] = useState(null);
+  const [triggerPostImage, result] = usePostImageUserMutation()
+  const dispatch = useDispatch();
+  const { localId } = useSelector((state) => state.auth.value)
 
   const verifyCameraPermisson = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -51,7 +57,14 @@ const ImageSelector = () => {
   }
 
   const confirmImage = () => {
-    //Guardar foto en bd
+    try {
+      dispatch(setImageUser(image))
+      triggerPostImage({ image, localId })
+      navigation.goBack()
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   return (
@@ -109,8 +122,6 @@ const ImageSelector = () => {
 
 export default ImageSelector;
 
-//mail@prueba.com
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -119,7 +130,8 @@ const styles = StyleSheet.create({
   image: {
     height: 200,
     width: 200,
-    marginTop: 20
+    marginTop: 20,
+    borderRadius: 100
   },
   btn: {
     backgroundColor: "black",
@@ -141,6 +153,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderWidth: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 100
   }
 })
