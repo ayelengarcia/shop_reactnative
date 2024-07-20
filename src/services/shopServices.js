@@ -4,11 +4,16 @@ import { baseUrl } from "../databases/realtimeDataBase";
 export const shopApi = createApi({
   reducerPath: "ShopApi",
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
-  tagTypes: ["profileImageGet"],
+  tagTypes: ["profileImageGet", "profileLocationGet"],
+  
   endpoints: (builder) => ({
+
+    //METODOS COLLECCION CATEGORIAS
     getCategories: builder.query({
       query: () => `categories.json`,
     }),
+
+    //METODOS COLLECCION PRODUCTOS
     getProductsByCategory: builder.query({
       query: (category) =>
         `products.json?orderBy="category"&equalTo="${category}"`,
@@ -24,6 +29,9 @@ export const shopApi = createApi({
         if (transformedResponse.length) return transformedResponse[0];
       },
     }),
+
+    //METODOS COLLECCION ORDERS
+    //Agregar get order
     postOder: builder.mutation({
       query: ({ ...order }) => ({
         url: "order.json",
@@ -31,6 +39,8 @@ export const shopApi = createApi({
         body: order,
       }),
     }),
+
+    //METODOS IMAGEN PERFIL
     getImageUser: builder.query({
       query: (localId) => `profileImages/${localId}.json`,
       providesTags: ["profileImageGet"],
@@ -45,6 +55,25 @@ export const shopApi = createApi({
       }),
       invalidatesTags: ["profileImageGet"],
     }),
+
+    //METODOS UBICACION PERFIL
+    getLocationUser: builder.query({
+      query: (localId) => `profileLocation/${localId}.json`,
+      providesTags: ["profileLocationGet"],
+    }),
+    postLocationUser: builder.mutation({
+      query: ({ location, localId }) => ({
+        url: `profileLocation/${localId}.json`,
+        method: "PUT",
+        body: {
+          latitude: location.latitude,
+          longitud: location.longitud,
+          address: location.address,
+          updatedAt: location.updatedAt,
+        },
+      }),
+      invalidatesTags: ["profileLocationGet"],
+    }),
   }),
 });
 
@@ -55,4 +84,6 @@ export const {
   usePostOderMutation,
   useGetImageUserQuery,
   usePostImageUserMutation,
+  useGetLocationUserQuery,
+  usePostLocationUserMutation
 } = shopApi;

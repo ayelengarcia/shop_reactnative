@@ -4,11 +4,9 @@ import MapPreview from "../components/MapPreview"
 
 import * as Location from "expo-location"
 
-// import { ApiKeyMaps } from "../databases/googleMaps"
-// import { usePostLocationMutation } from "../services/shopServices"
-// import { useSelector } from "react-redux"
-
-
+import { ApiKeyMaps } from "../databases/googleMaps"
+import { usePostLocationUserMutation } from "../services/shopServices"
+import { useSelector } from "react-redux"
 
 
 const LocationSelector = ({ navigation }) => {
@@ -16,8 +14,8 @@ const LocationSelector = ({ navigation }) => {
   const [address, setAddres] = useState("")
   const [error, setError] = useState("")
 
-  // const [triggerPostUserLocation, result] = usePostLocationMutation()
-  // const { localId } = useSelector(state => state.auth.value)
+  const [triggerPostUserLocation, result] = usePostLocationUserMutation()
+  const { localId } = useSelector(state => state.auth.value)
 
   useEffect(() => {
     (async () => {
@@ -41,38 +39,39 @@ const LocationSelector = ({ navigation }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      try {
 
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       if (location.latitude) {
-  //         const url_reverse_geocode = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${ApiKeyMaps}`;
-  //         const response = await fetch(url_reverse_geocode);
-  //         const data = await response.json();
-  //         console.dir(data)
-  //         setAddres(data.results[0].formatted_address)
-  //       }
-  //     } catch (error) {
+        if (location.latitude) {
+          const url_reverse = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${ApiKeyMaps}`;
 
-  //     }
-  //   })()
-  // }, [location])
+          const response = await fetch(url_reverse);
+          const data = await response.json();
+          setAddres(data.results[0].formatted_address);
+        }
+
+      } catch (error) {
+        console.log(error)
+      }
+    })();
+  }, [location]);
 
 
-  const onConfirmAddress = () => {
+  const confirmAddress = () => {
+    const date = new Date();
 
-    // const date = new Date()
+    triggerPostUserLocation({
+      location: {
+        latitude: location.latitude,
+        longitude: location.longitude,
+        address: address,
+        updatedAt: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` 
+      },
+      localId: localId
+    })
 
-    // triggerPostUserLocation({
-    //   location: {
-    //     latitude: location.latitude,
-    //     longitude: location.longitude,
-    //     address: address,
-    //     updatedAt: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
-    //   },
-    //   localId: localId
-    // })
-
+    navigation.navigate("List Address")
   }
 
   return (
@@ -87,7 +86,7 @@ const LocationSelector = ({ navigation }) => {
           <MapPreview location={location} />
           <Text style={styles.address}>Formatted address: {address}</Text>
           <Pressable
-            onPress={onConfirmAddress}
+            onPress={confirmAddress}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
             <Text style={styles.text_btn}>Confirm Address</Text>
           </Pressable>

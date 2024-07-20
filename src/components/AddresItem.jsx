@@ -8,7 +8,7 @@ const AddressItem = ({ location, navigation }) => {
       <View style={styles.textContainer}>
         <Text style={styles.text}>{location.address}</Text>
       </View>
-      <Pressable onPress={navigation.navigate('Location Selector')}>
+      <Pressable onPress={() => navigation.navigate('Location Selector')}>
         <Entypo name="location" size={30} color="white">
           <Text style={styles.text2}>Change</Text>
         </Entypo>
@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   text: {
-    fontFamily: "Josefin",
+    fontFamily: "Kanit-regular",
     fontSize: 17,
-    color: "gray",
+    color: "white",
   },
   text2: {
-    fontFamily: "Josefin",
+    fontFamily: "Kanit-regular",
     fontSize: 19,
-    color: "gray",
+    color: "black",
     padding: 8,
   },
 });

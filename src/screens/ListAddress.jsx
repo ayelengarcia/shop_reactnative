@@ -1,14 +1,13 @@
 import { StyleSheet, Text, View, Pressable } from "react-native"
-import { useState } from "react"
 import AddressItem from "../components/AddresItem"
+
 import { useSelector } from "react-redux"
-import { useGetLocationQuery } from "../services/shopServices"
+import { useGetLocationUserQuery } from "../services/shopServices"
 
 
 const ListAddress = ({ navigation }) => {
-  const [location, setLocation] = useState(null)
-  // const { localId } = useSelector((state) => state.auth.value)
-  // const { data: location } = useGetLocationQuery(localId)
+  const { localId } = useSelector((state) => state.auth.value);
+  const { data: location } = useGetLocationUserQuery(localId);
 
   return location ? (
     <AddressItem
