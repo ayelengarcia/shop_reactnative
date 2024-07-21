@@ -1,16 +1,24 @@
-import { StyleSheet, StatusBar, Platform, View} from 'react-native';
+import { StyleSheet, StatusBar, Platform, View } from 'react-native';
+import { useEffect } from "react";
 import { useFonts } from "expo-font";
-import Navigator from "./src/navigation/Navigator.jsx"
-
 import { Provider } from 'react-redux';
+import { useDB } from "./src/persistence/useDB";
+import Navigator from "./src/navigation/Navigator.jsx";
 import store from "./src/store/index.js"
 
+
 export default function App() {
+
+  const { initDB } = useDB();
+
+  useEffect(() => {
+    initDB();
+  }, []);
 
   const [fontsLoaded, fontError] = useFonts({
     "Kanit-regular": require("./assets/Kanit/Kanit-Regular.ttf"),
     "Bebas-regular": require("./assets/Bebas_Neue/BebasNeue-Regular.ttf"),
-  }); // Configuracion fuentes
+  });
 
   if (!fontsLoaded && !fontError) return null
 

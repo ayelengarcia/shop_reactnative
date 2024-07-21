@@ -13,15 +13,16 @@ export default Header
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.lightRed,
+    backgroundColor: colors.p_black,
     alignItems: "center",
     justifyContent:"center",
     width: "100%",
+    height: 70,
     padding: 5
   },
   styleText: {
     fontFamily: "Bebas-regular",
-    color: colors.p_black,
+    color: "white",
     fontSize: 26,
     fontWeight: "400"
   }

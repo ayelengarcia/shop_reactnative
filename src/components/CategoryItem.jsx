@@ -29,8 +29,7 @@ export default CategoryItem
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginHorizontal: 10,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   styleText: {
     textAlign: "center",

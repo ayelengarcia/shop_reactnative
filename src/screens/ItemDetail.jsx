@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import {
   Button,
   Image,
@@ -33,7 +32,6 @@ const ItemDetail = ({
   }, [width, height])
 
   const handleAddCart = () => {
-    dispatch(addCartItem)
     dispatch(addCartItem({...product, quantity: 1}))
   }
 

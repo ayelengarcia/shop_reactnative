@@ -5,7 +5,6 @@ import { useGetOderByUserQuery } from '../services/shopServices.js';
 
 const Order = () => {
   const { data: dataOrders } = useGetOderByUserQuery("mail@mail.com")
-  console.log(dataOrders)
 
   return (
     <View style={styles.container}>

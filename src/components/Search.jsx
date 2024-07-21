@@ -39,24 +39,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 18,
+    gap: 7,
     marginTop: 20
   },
   input: {
-    width: 220,
+    width: 200,
+    height: 40,
     padding: 8,
     fontSize: 15,
     borderRadius: 3,
+    borderWidth: 1,
+    borderColor: "#c1c1c1",
     backgroundColor: "#f9f9f9",
     color: colors.p_black,
     fontFamily: "Kanit-regular",
-    border: "1px solid rgb(226 226 226)",
   },
   btn: {
-    backgroundColor: colors.lightRed,
+    backgroundColor: "white",
     padding: 8,
     borderRadius: 3,
-    color: colors.p_black,
+    borderWidth: 1,
     border: "1px solid rgb(226 226 226)",
   }
 });

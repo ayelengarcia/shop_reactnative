@@ -3,8 +3,11 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetImageUserQuery } from '../services/shopServices';
 import { clearUser } from '../features/user/UserSlice';
+import { useDB } from '../persistence/useDB';
+
 
 const MyProfile = ({ navigation }) => {
+  const { deleteSession } = useDB()
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const { imageUser, localId } = useSelector((state) => state.auth.value);
@@ -18,8 +21,15 @@ const MyProfile = ({ navigation }) => {
     }
   }, [imageFromBase, imageUser]);
 
+
   const handleLogout = async () => {
-    dispatch(clearUser())
+    try {
+      deleteSession();
+      console.log("Sesion cerrada");
+      dispatch(clearUser());
+    } catch (error) {
+      console.log({ errorSignOutDB: error });
+    }
   }
 
   return (
@@ -55,13 +65,13 @@ const MyProfile = ({ navigation }) => {
         <View>
           <Pressable
             onPress={() => navigation.navigate("List Address")}
-            style={({ pressed }) => [styles.btn_address, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text_address}>List Address</Text>
+            style={({ pressed }) => [styles.btn_2, { opacity: pressed ? 0.7 : 1 }]}>
+            <Text style={styles.text_2}>List Address</Text>
           </Pressable>
 
           <Pressable
-            style={({ pressed }) => [styles.btn_address, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text_address}>Otra cosa</Text>
+            style={({ pressed }) => [styles.btn_2, { opacity: pressed ? 0.7 : 1 }]}>
+            <Text style={styles.text_2}>Account information</Text>
           </Pressable>
         </View>
 
@@ -105,7 +115,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Kanit-regular"
   },
-  btn_address: {
+  btn_2: {
+    backgroundColor: "white",
     paddingHorizontal: 35,
     paddingVertical: 5,
     marginTop: 10,
@@ -113,16 +124,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
+    borderColor: "#c1c1c1",
     width: 300,
     height: 60
   },
-  text_address: {
+  text_2: {
     fontSize: 16,
   },
   container_info: {
     justifyContent: "space-between",
     alignItems: "center",
-    height: "50%",
+    height: "40%",
     marginTop: 20
   }
 })

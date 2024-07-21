@@ -1,12 +1,12 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useState, useEffect } from "react";
-import { colors } from "../global/colors";
 
 import InputForm from "../components/InputForm";
 import SubmitButton from "../components/SubmitButton";
 import { useSignInMutation } from "../services/authServices";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/UserSlice";
+import { useDB } from "../persistence/useDB";
 
 
 const Login = ({ navigation }) => {
@@ -16,17 +16,24 @@ const Login = ({ navigation }) => {
 
   const [triggerSignIn, result] = useSignInMutation()
 
-  useEffect(() => {
-    if (result.isSuccess) {
-      dispatch(
-        setUser({
-          email: result.data.email,
-          idToken: result.data.idToken,
-          localId: result.data.localId,
-        })
-      );
+  const { insertSession } = useDB();
+
+  useEffect(()=> {
+    if (result?.data && result.isSuccess) {
+      insertSession({
+        email: result.data.email,
+        localId: result.data.localId,
+        token: result.data.idToken,
+      })
+        dispatch(
+          setUser({
+            email: result.data.email,
+            idToken: result.data.idToken,
+            localId: result.data.localId,
+          })
+        );
     }
-  }, [result])
+  }, [result]) 
 
   const onSubmit = () => {
     triggerSignIn({ email, password, returnSecureToken: true })
@@ -62,17 +69,20 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white"
+    backgroundColor: "#ededed"
   },
   container: {
     width: "90%",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.lightRed,
+    backgroundColor: "white",
     gap: 15,
-    paddingVertical: 20,
+    paddingVertical: 40,
+    paddingHorizontal: 20,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#c1c1c1"
   },
   title: {
     fontSize: 22,
