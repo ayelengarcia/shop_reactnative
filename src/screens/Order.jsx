@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
-import dataOrders from "../data/orders.json"
+import { StyleSheet, View, FlatList } from 'react-native'
 import OrderItem from '../components/OrderItem.jsx';
+import { useGetOderByUserQuery } from '../services/shopServices.js';
 
 
 const Order = () => {
+  const { data: dataOrders } = useGetOderByUserQuery("mail@mail.com")
+  console.log(dataOrders)
+
   return (
     <View style={styles.container}>
       <FlatList
         data={dataOrders}
         renderItem={({ item }) => <OrderItem orderItem={item} />}
-        keyExtractor={dataOrders.id}
+        // keyExtractor={dataOrders.id}
       />
     </View>
   )

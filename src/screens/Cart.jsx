@@ -11,7 +11,7 @@ const Cart = () => {
   const [ triggerPostOrder, result ] = usePostOderMutation()
   
   const handleCreateOrder = () => {
-    triggerPostOrder({items: dataCart, user: "Brujula", total})
+    triggerPostOrder({items: dataCart, user: "mail@mail.com", total})
   }
 
   return (

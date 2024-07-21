@@ -1,9 +1,11 @@
 import { StyleSheet, View, Image, Text, Pressable } from 'react-native'
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useGetImageUserQuery } from '../services/shopServices';
+import { clearUser } from '../features/user/UserSlice';
 
 const MyProfile = ({ navigation }) => {
+  const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const { imageUser, localId } = useSelector((state) => state.auth.value);
   const { data: imageFromBase } = useGetImageUserQuery(localId);
@@ -15,6 +17,10 @@ const MyProfile = ({ navigation }) => {
       setImage(imageUser);
     }
   }, [imageFromBase, imageUser]);
+
+  const handleLogout = async () => {
+    dispatch(clearUser())
+  }
 
   return (
     <View style={styles.container}>
@@ -45,21 +51,26 @@ const MyProfile = ({ navigation }) => {
           </Pressable>
         </>
       )}
-      <Pressable
-        onPress={() => navigation.navigate("List Address")}
-          style={({ pressed }) => [styles.btn_address, { opacity: pressed ? 0.7 : 1 }]}>
-        <Text style={styles.text_address}>List Address</Text>
-      </Pressable>
+      <View style={styles.container_info}>
+        <View>
+          <Pressable
+            onPress={() => navigation.navigate("List Address")}
+            style={({ pressed }) => [styles.btn_address, { opacity: pressed ? 0.7 : 1 }]}>
+            <Text style={styles.text_address}>List Address</Text>
+          </Pressable>
 
-      <Pressable
-        style={({ pressed }) => [styles.btn_address, { opacity: pressed ? 0.7 : 1 }]}>
-        <Text style={styles.text_address}>Otra cosa</Text>
-      </Pressable>
+          <Pressable
+            style={({ pressed }) => [styles.btn_address, { opacity: pressed ? 0.7 : 1 }]}>
+            <Text style={styles.text_address}>Otra cosa</Text>
+          </Pressable>
+        </View>
 
-      <Pressable
-        style={({ pressed }) => [styles.btn_address, { opacity: pressed ? 0.7 : 1 }]}>
-        <Text style={styles.text_address}>Mas cosas</Text>
-      </Pressable>
+        <Pressable
+          onPress={handleLogout}
+          style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
+          <Text style={styles.text}>Sign Out</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -86,7 +97,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 7,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    height: 40
   },
   text: {
     color: "white",
@@ -96,14 +108,21 @@ const styles = StyleSheet.create({
   btn_address: {
     paddingHorizontal: 35,
     paddingVertical: 5,
-    marginTop: 20,
+    marginTop: 10,
     borderRadius: 7,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
-    width: "90%"
+    width: 300,
+    height: 60
   },
   text_address: {
     fontSize: 16,
+  },
+  container_info: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "50%",
+    marginTop: 20
   }
 })

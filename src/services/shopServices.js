@@ -5,9 +5,8 @@ export const shopApi = createApi({
   reducerPath: "ShopApi",
   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   tagTypes: ["profileImageGet", "profileLocationGet"],
-  
-  endpoints: (builder) => ({
 
+  endpoints: (builder) => ({
     //METODOS COLLECCION CATEGORIAS
     getCategories: builder.query({
       query: () => `categories.json`,
@@ -34,10 +33,17 @@ export const shopApi = createApi({
     //Agregar get order
     postOder: builder.mutation({
       query: ({ ...order }) => ({
-        url: "order.json",
+        url: "orders.json",
         method: "POST",
         body: order,
       }),
+    }),
+    getOderByUser: builder.query({
+      query: (user) => `orders.json?orderBy="user"&equalTo="${user}"`,
+      transformResponse: (res) => {
+        const transformedResponse = Object.values(res);
+        return transformedResponse;
+      },
     }),
 
     //METODOS IMAGEN PERFIL
@@ -82,8 +88,9 @@ export const {
   useGetProductsByCategoryQuery,
   useGetProductByIdQuery,
   usePostOderMutation,
+  useGetOderByUserQuery,
   useGetImageUserQuery,
   usePostImageUserMutation,
   useGetLocationUserQuery,
-  usePostLocationUserMutation
+  usePostLocationUserMutation,
 } = shopApi;
