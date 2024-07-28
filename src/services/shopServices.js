@@ -42,10 +42,15 @@ export const shopApi = createApi({
         body: order,
       }),
     }),
+    
     getOderByUser: builder.query({
       query: (user) => `orders.json?orderBy="user"&equalTo="${user}"`,
       transformResponse: (res) => {
-        const transformedResponse = Object.values(res);
+        // Asegúrate de incluir las claves de los datos en la respuesta transformada
+        const transformedResponse = Object.entries(res).map(([id, order]) => ({
+          id,
+          ...order,
+        }));
         return transformedResponse;
       },
     }),

@@ -16,11 +16,11 @@ const ListAddress = ({ navigation }) => {
     />
   ) : (
     <View style={styles.container}>
-      <Text style={styles.text}>No location set</Text>
+      <Text style={styles.text}>No se estableció ubicación</Text>
       <Pressable
         onPress={() => navigation.navigate("Location Selector")}
         style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-        <Text style={styles.text_btn}>Set location</Text>
+        <Text style={styles.text_btn}>Establecer ubicación</Text>
       </Pressable>
     </View>
   )

@@ -7,6 +7,7 @@ import { useSignUpMutation } from "../services/authServices";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/UserSlice";
 import { signupSchema } from "../validations/singUpSchema";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 const Signup = ({ navigation }) => {
@@ -65,28 +66,28 @@ const Signup = ({ navigation }) => {
   return (
     <View style={styles.main}>
       <View style={styles.container}>
-        <Text style={styles.title}>Signup</Text>
+        <Text style={styles.title}>Registrarme</Text>
         <InputForm
           label={"Email"}
           onChange={setEmail}
           error={errorMail}
         />
         <InputForm
-          label={"Password"}
+          label={"Contraseña"}
           onChange={setPassword}
           error={errorPassword}
           isSecure={true}
         />
         <InputForm
-          label={"Confirm password"}
+          label={"Confirmar contraseña"}
           onChange={setconfirmPassword}
           error={errorConfirmPassword}
           isSecure={true}
         />
-        <SubmitButton onPress={onSubmit} title="Send" />
-        <Text style={styles.sub}>Already have an account?</Text>
+        <SubmitButton onPress={onSubmit} title="Enviar" />
+        <Text style={styles.sub}>¿Ya tienes una cuenta?</Text>
         <Pressable onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.subLink}>Login</Text>
+          <Text style={styles.subLink}>Iniciar sesión</Text>
         </Pressable>
       </View>
     </View>
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-    backgroundColor: "#ededed"
+    backgroundColor: colors.ligthBlue
   },
   container: {
     width: "90%",
@@ -119,17 +120,19 @@ const styles = StyleSheet.create({
     borderColor: "#c1c1c1"
   },
   title: {
-    fontSize: 22,
+    fontSize: 25,
     fontFamily: "Bebas-regular",
+    color: colors.p_black,
+
   },
   sub: {
     fontSize: 14,
     fontFamily: "Kanit-regular",
-    color: "black",
+    color: colors.p_black,
   },
   subLink: {
     fontSize: 14,
     fontFamily: "Kanit-regular",
-    color: "blue",
+    color: "#1097E9",
   },
 });

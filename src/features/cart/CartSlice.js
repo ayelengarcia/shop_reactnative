@@ -86,8 +86,6 @@ export const cartSlice = createSlice({
       };
     },
 
-    //sin usar - agregar - 1 + para sumar y restar en CartItem
-    
     //Borra todo el item
     removeCartItem: (state, { payload }) => {
       const itemsUpdated = state.value.items.filter(
@@ -104,9 +102,14 @@ export const cartSlice = createSlice({
         updateAt: new Date().toLocaleString(),
       };
     },
+    clearCart: (state) => {
+      state.value.items = [];
+      state.value.total = 0;
+    },
   },
 });
 
-export const { addCartItem, removeCartItem, removeOneCartItem } = cartSlice.actions;
+export const { addCartItem, removeCartItem, removeOneCartItem, clearCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

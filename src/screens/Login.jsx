@@ -7,6 +7,7 @@ import { useSignInMutation } from "../services/authServices";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/user/UserSlice";
 import { useDB } from "../persistence/useDB";
+import { colors } from "../global/colors";
 
 
 const Login = ({ navigation }) => {
@@ -42,19 +43,19 @@ const Login = ({ navigation }) => {
   return (
     <View style={styles.main}>
       <View style={styles.container}>
-        <Text style={styles.title}>Login to start</Text>
+        <Text style={styles.title}>Iniciar sesión</Text>
         <InputForm label={"Email"} onChange={setEmail} error={""} />
         <InputForm
-          label={"Password"}
+          label={"Contraseña"}
           onChange={setPassword}
           error={""}
           isSecure={true}
         />
-        <SubmitButton onPress={onSubmit} title="Send" />
-        <Text style={styles.sub}>Not have an account?</Text>
+        <SubmitButton onPress={onSubmit} title="Enviar" />
+        <Text style={styles.sub}>¿No tienes una cuenta?</Text>
 
         <Pressable onPress={() => navigation.navigate("Signup")}>
-          <Text style={styles.subLink}>Sign up</Text>
+          <Text style={styles.subLink}>Registrarme</Text>
         </Pressable>
       </View>
     </View>
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ededed"
+    backgroundColor: colors.ligthBlue
   },
   container: {
     width: "90%",
@@ -85,17 +86,19 @@ const styles = StyleSheet.create({
     borderColor: "#c1c1c1"
   },
   title: {
-    fontSize: 22,
+    fontSize: 25,
     fontFamily: "Bebas-regular",
+    color: colors.p_black
   },
   sub: {
     fontSize: 14,
     color: "black",
     fontFamily: "Kanit-regular",
+    color: colors.p_black
   },
   subLink: {
     fontSize: 14,
-    color: "blue",
+    color: "#1097E9",
     fontFamily: "Kanit-regular",
   },
 });

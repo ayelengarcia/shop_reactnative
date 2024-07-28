@@ -7,6 +7,7 @@ import * as Location from "expo-location"
 import { ApiKeyMaps } from "../databases/googleMaps"
 import { usePostLocationUserMutation } from "../services/shopServices"
 import { useSelector } from "react-redux"
+import { colors } from "../global/colors"
 
 
 const LocationSelector = ({ navigation }) => {
@@ -76,15 +77,17 @@ const LocationSelector = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>My Address</Text>
+      <Text style={styles.title}>MI UBICACIÓN</Text>
       {location ? (
         <>
-          <Text style={styles.text}>
-            Lat: {location.latitude}, long: {location.longitude}.
-          </Text>
+          <Text style={styles.text}> Latitud: {location.latitude} </Text>
+          <Text style={styles.text}>  Longitud: {location.longitude} </Text>
+          
 
           <MapPreview location={location} />
-          <Text style={styles.address}>Formatted address: {address}</Text>
+          <Text style={styles.address}>Dirección:</Text>
+          <Text style={styles.text}>{address}</Text>
+
           <Pressable
             onPress={confirmAddress}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
@@ -108,12 +111,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "flex-start",
   },
-  text: {
-    paddingTop: 20,
+  title: {
     fontFamily: "Kanit-regular",
     fontSize: 18,
+    paddingVertical: 20
+  },
+  text: {
+    fontFamily: "Kanit-regular",
+    fontSize: 15,
+    color: colors.p_black
   },
   noLocationContainer: {
     width: 200,
@@ -128,4 +135,18 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
   },
+  btn: {
+    backgroundColor: "#1097E9",
+    marginTop: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 5,
+    elevation: 4
+    
+  },
+  text_btn: {
+    color: colors.white,
+    fontFamily: "Bebas-regular",
+    fontSize: 20
+  }
 })

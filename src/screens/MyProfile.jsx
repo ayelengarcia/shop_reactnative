@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useGetImageUserQuery } from '../services/shopServices';
 import { clearUser } from '../features/user/UserSlice';
 import { useDB } from '../persistence/useDB';
+import { colors } from '../global/colors';
 
 
 const MyProfile = ({ navigation }) => {
@@ -44,7 +45,7 @@ const MyProfile = ({ navigation }) => {
           <Pressable
             onPress={() => navigation.navigate("Image Selector")}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text}>Change Profile Picture</Text>
+            <Text style={styles.text}>Cambiar Foto de Perfil</Text>
           </Pressable>
         </>
       ) : (
@@ -57,7 +58,7 @@ const MyProfile = ({ navigation }) => {
           <Pressable
             onPress={() => navigation.navigate("Image Selector")}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text}>Add Profile Picture</Text>
+            <Text style={styles.text}>Subir Foto de Perfil</Text>
           </Pressable>
         </>
       )}
@@ -66,19 +67,19 @@ const MyProfile = ({ navigation }) => {
           <Pressable
             onPress={() => navigation.navigate("List Address")}
             style={({ pressed }) => [styles.btn_2, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text_2}>List Address</Text>
+            <Text style={styles.text_2}>Mis Direcciones</Text>
           </Pressable>
 
           <Pressable
             style={({ pressed }) => [styles.btn_2, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text_2}>Account information</Text>
+            <Text style={styles.text_2}>Información de la Cuenta</Text>
           </Pressable>
         </View>
 
         <Pressable
           onPress={handleLogout}
           style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-          <Text style={styles.text}>Sign Out</Text>
+          <Text style={styles.text}>Cerrar sesión</Text>
         </Pressable>
       </View>
     </View>
@@ -101,14 +102,15 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   btn: {
-    backgroundColor: "black",
+    backgroundColor: "#1097E9",
     paddingHorizontal: 35,
     paddingVertical: 5,
     marginTop: 20,
     borderRadius: 7,
     justifyContent: "center",
     alignItems: "center",
-    height: 40
+    height: 40,
+    elevation:4
   },
   text: {
     color: "white",

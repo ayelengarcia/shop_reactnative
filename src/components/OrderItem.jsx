@@ -2,12 +2,15 @@ import { StyleSheet, Text, View, FlatList } from 'react-native'
 
 const OrderItem = ({ orderItem }) => {
 
-
   const productsOrder = orderItem.items
+
+  const formatPrice = (price) => {
+    return price.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
 
   return (
     <View style={styles.container}>
-      <Text>Numero de orden: {orderItem.createdAt}</Text>
+      <Text>ORDEN: {orderItem.id}</Text> 
       <Text>Productos:</Text>
       <FlatList
         data={productsOrder}
@@ -19,6 +22,7 @@ const OrderItem = ({ orderItem }) => {
         }}
         keyExtractor={productsOrder.id}
       />
+      <Text>TOTAL: ${formatPrice(orderItem.total)}</Text>
       <Text style={styles.detalle}>Ver detalles...</Text>
     </View>
   )

@@ -80,37 +80,37 @@ const ImageSelector = ({navigation}) => {
           <Pressable
             onPress={pickImageCamera}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text}>Take new photo</Text>
+            <Text style={styles.text}>Tomar foto nueva</Text>
           </Pressable>
 
           <Pressable
             onPress={pickImageGalery}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text}>Select from gallery</Text>
+            <Text style={styles.text}>Seleccionar de galeria</Text>
           </Pressable>
 
           <Pressable
             onPress={confirmImage}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text}>Confirm image</Text>
+            <Text style={styles.text}>Confirmar imagen</Text>
           </Pressable>
 
         </>
         :
         <>
           <View style={styles.containerPhoto}>
-            <Text>No photo to show...</Text>
+            <Text>No hay ninguna imagen...</Text>
           </View>
           <Pressable
             onPress={pickImageCamera}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text}>Take a photo</Text>
+            <Text style={styles.text}>Tomar una foto</Text>
           </Pressable>
 
           <Pressable
             onPress={pickImageGalery}
             style={({ pressed }) => [styles.btn, { opacity: pressed ? 0.7 : 1 }]}>
-            <Text style={styles.text}>Select from gallery</Text>
+            <Text style={styles.text}>Seleccionar de galería</Text>
           </Pressable>
 
         </>
@@ -134,13 +134,14 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   btn: {
-    backgroundColor: "black",
+    backgroundColor: "#1097E9",
     width: 200,
     paddingVertical: 5,
     marginTop: 20,
     borderRadius: 7,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    elevation:4
   },
   text: {
     color: "white",
