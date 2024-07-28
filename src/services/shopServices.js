@@ -13,9 +13,13 @@ export const shopApi = createApi({
     }),
 
     //METODOS COLLECCION PRODUCTOS
+    getAllProducts: builder.query({
+      query: () => `products.json`,
+      transformResponse: (res) => Object.values(res),
+    }),
     getProductsByCategory: builder.query({
       query: (category) =>
-        `products.json?orderBy="category"&equalTo="${category}"`,
+        `products.json?orderBy="category"&equalTo="${category.category}"`,
       transformResponse: (res) => {
         const transformedResponse = Object.values(res);
         return transformedResponse;
@@ -85,6 +89,7 @@ export const shopApi = createApi({
 
 export const {
   useGetCategoriesQuery,
+  useGetAllProductsQuery,
   useGetProductsByCategoryQuery,
   useGetProductByIdQuery,
   usePostOderMutation,

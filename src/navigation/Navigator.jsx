@@ -34,7 +34,8 @@ const Navigator = () => {
   });
 
   return (
-    <NavigationContainer >
+    <NavigationContainer
+    >
       {user ? <BottomTabNavigator /> : <AuthStackNavigator />}
     </NavigationContainer>
   )

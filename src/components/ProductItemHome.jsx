@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   additionalStylesCard: {
     alignItems: "center",
     justifyContent: "center",
-    width: '47%',
+    width: '95%',
+    height: 300
   },
   contain_img: {
     paddingHorizontal: 20,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10
   },
   image: {
-    height: 150,
+    height: 170,
     maxWidth: 150,
     borderTopEndRadius: 8,
     borderBottomEndRadius: 8,

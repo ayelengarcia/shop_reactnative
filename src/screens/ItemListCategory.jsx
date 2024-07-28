@@ -1,24 +1,17 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
 import { useEffect, useState } from 'react'
 import ProductItem from "../components/ProductItem.jsx"
-
 import Search from '../components/Search.jsx'
 import { useGetProductsByCategoryQuery } from '../services/shopServices.js'
 
-const ItemListCategory = ({
-  navigation,
-  route
-}) => {
-  
+const ItemListCategory = ({ navigation, route }) => {
   const [keyword, setKeyword] = useState("");
   const [productFiltered, setProductFiltered] = useState([]);
   const [error, setError] = useState("")
 
-  //le pongo un alias a category para no renombrar categorySelected
   const { category: categorySelected } = route.params
 
-  const {data: productsFetched, error: errorFetched, isLoading} = useGetProductsByCategoryQuery(categorySelected);
-
+  const { data: productsFetched, error: errorFetched, isLoading } = useGetProductsByCategoryQuery(categorySelected);
 
   useEffect(() => {
     const regex = /[\d]/
@@ -29,11 +22,12 @@ const ItemListCategory = ({
       return
     }
 
-    if(!isLoading){
-      const productsFilter = productsFetched.filter((product) => product.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()))
+    if (!isLoading) {
+      const productsFilter = productsFetched.filter((product) =>
+        product.title.toLocaleLowerCase().includes(keyword.toLocaleLowerCase())
+      )
       setProductFiltered(productsFilter)
     }
-   
   }, [keyword, categorySelected, productsFetched, isLoading])
 
   const volver = () => {
@@ -42,23 +36,18 @@ const ItemListCategory = ({
 
   return (
     <View style={styles.container}>
-
-      {/* Search */}
-      <Search
-        onSearch={setKeyword}
-        goBack={volver} />
-      
+      <Search onSearch={setKeyword} goBack={volver} />
       <Text style={styles.text_error}>{error}</Text>
 
-      {/* Lista */}
       <FlatList
         data={productFiltered}
         style={styles.container_flatList}
-        keyExtractor={(product)=> product.id}
+        keyExtractor={(product) => product.id}
         renderItem={({ item }) =>
-          <ProductItem
-            product={item}
-            navigation={navigation} />}
+          <ProductItem product={item} navigation={navigation} />
+        }
+        numColumns={2}
+        columnWrapperStyle={styles.row}
       />
     </View>
   )
@@ -75,12 +64,15 @@ const styles = StyleSheet.create({
   },
   container_flatList: {
     width: "100%",
-    paddingVertical: 10,
-    paddingHorizontal: 20
+    paddingHorizontal: 10
   },
   text_error: {
     color: "red",
     width: "100%",
     paddingHorizontal: 20
+  },
+  row: {
+    flex: 1,
+    justifyContent: "space-around"
   }
 })

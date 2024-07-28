@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native'
 import { colors } from '../global/colors.js'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons';
@@ -16,59 +15,55 @@ const Tab = createBottomTabNavigator()
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        header: () => {
-          return <Header title={route.name} />
-        },
+      screenOptions={({ route, navigation }) => ({
+        header: () => <Header navigation={navigation} title={route.name} />,
         tabBarShowLabel: false,
-        tabBarStyle: styles.tabBar
-      }
-      )}
+      })}
     >
 
       <Tab.Screen
-        name="Shop"
+        name="INICIO"
         component={HomeStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <Ionicons name="storefront" size={26} color={ focused ? "black" : "white"} />
+              <Ionicons name="storefront" size={focused ? 32 : 26} color={focused ? colors.blue : colors.ligthBlue} />
             )
           }
         }}
       />
       
       <Tab.Screen
-        name="Cart"
+        name="CARRITO"
         component={CartStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <Ionicons name="cart" size={26} color={focused ? "black" : "white"} />
+              <Ionicons name="cart" size={focused ? 36 : 30} color={focused ? colors.blue : colors.ligthBlue} />
             )
           }
         }}
       />
       
       <Tab.Screen
-        name="Orders"
+        name="ORDENES"
         component={OrderStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <Ionicons name="receipt" size={26} color={focused ? "black" : "white"} />
+              <Ionicons name="receipt" size={focused ? 32 : 26} color={focused ? colors.blue : colors.ligthBlue} />
             )
           }
         }}
       />
 
       <Tab.Screen
-        name="Profile"
+        name="PERFIL"
         component={MyProfileStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
-              <Ionicons name="person-sharp" size={26} color={focused ? "black" : "white"} />
+              <Ionicons name="person-sharp" size={focused ? 32 : 26} color={focused ? colors.blue : colors.ligthBlue} />
             )
           }
         }}
@@ -79,9 +74,3 @@ const BottomTabNavigator = () => {
 }
 
 export default BottomTabNavigator
-
-const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: colors.p_black
-  }
-})

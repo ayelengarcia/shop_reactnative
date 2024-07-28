@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { useDB } from "./src/persistence/useDB";
 import Navigator from "./src/navigation/Navigator.jsx";
 import store from "./src/store/index.js"
+import { colors } from './src/global/colors.js';
 
 
 export default function App() {
@@ -35,6 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: Platform.OS === "android" ? StatusBar.currentHeight: 0,
-    backgroundColor: "white"
+    backgroundColor: colors.white
   },
 });

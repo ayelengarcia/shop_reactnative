@@ -11,9 +11,11 @@ export default function HomeStackNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={{headerShown: false}}
+      screenOptions={{
+        headerShown: false
+      }}
     >
-      
+        
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="ItemListCategory" component={ItemListCategory} />
         <Stack.Screen name="ItemDetail" component={ItemDetail} />

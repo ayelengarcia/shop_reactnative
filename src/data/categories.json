@@ -1,22 +1,26 @@
 [
-  "smartphones",
-  "laptops",
-  "fragrances",
-  "skincare",
-  "groceries",
-  "home-decoration",
-  "furniture",
-  "tops",
-  "womens-dresses",
-  "womens-shoes",
-  "mens-shirts",
-  "mens-shoes",
-  "mens-watches",
-  "womens-watches",
-  "womens-bags",
-  "womens-jewellery",
-  "sunglasses",
-  "automotive",
-  "motorcycle",
-  "lighting"
+  {
+    "category": "Fragancias",
+    "img": "https://img.freepik.com/foto-gratis/vista-frontal-mujer-frasco-perfume_23-2148734965.jpg?t=st=1722126948~exp=1722130548~hmac=8df62b86b2dc863dce20d577aba702099b043fcd75aebfac3757c497986f3cd7&w=740"
+  },
+  {
+    "category": "Dermocosmética",
+    "img": "https://img.freepik.com/foto-gratis/vista-frontal-mujer-frasco-perfume_23-2148734965.jpg?t=st=1722126948~exp=1722130548~hmac=8df62b86b2dc863dce20d577aba702099b043fcd75aebfac3757c497986f3cd7&w=740"
+  },
+  {
+    "category": "Maquillaje",
+    "img": "https://img.freepik.com/foto-gratis/vista-frontal-mujer-frasco-perfume_23-2148734965.jpg?t=st=1722126948~exp=1722130548~hmac=8df62b86b2dc863dce20d577aba702099b043fcd75aebfac3757c497986f3cd7&w=740"
+  },
+  {
+    "category": "Cuidado capilar",
+    "img": "https://img.freepik.com/foto-gratis/vista-frontal-mujer-frasco-perfume_23-2148734965.jpg?t=st=1722126948~exp=1722130548~hmac=8df62b86b2dc863dce20d577aba702099b043fcd75aebfac3757c497986f3cd7&w=740"
+  },
+  {
+    "category": "Cuidado de uñas",
+    "img": "https://img.freepik.com/foto-gratis/vista-frontal-mujer-frasco-perfume_23-2148734965.jpg?t=st=1722126948~exp=1722130548~hmac=8df62b86b2dc863dce20d577aba702099b043fcd75aebfac3757c497986f3cd7&w=740"
+  },
+  {
+    "category": "Cuidado corporal",
+    "img": "https://img.freepik.com/foto-gratis/vista-frontal-mujer-frasco-perfume_23-2148734965.jpg?t=st=1722126948~exp=1722130548~hmac=8df62b86b2dc863dce20d577aba702099b043fcd75aebfac3757c497986f3cd7&w=740"
+  }
 ]
