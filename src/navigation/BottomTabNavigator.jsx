@@ -1,6 +1,7 @@
 import { colors } from '../global/colors.js'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons';
+import CartTabIcon from '../components/CartTabIcon.jsx';
 
 import HomeStackNavigator from "./HomeStackNavigatior.jsx"
 import CartStackNavigator from './CartStackNavigator.jsx'
@@ -37,11 +38,7 @@ const BottomTabNavigator = () => {
         name="CARRITO"
         component={CartStackNavigator}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons name="cart" size={focused ? 36 : 30} color={focused ? colors.blue : colors.ligthBlue} />
-            )
-          }
+          tabBarIcon: ({ focused }) => <CartTabIcon focused={focused} />,
         }}
       />
       

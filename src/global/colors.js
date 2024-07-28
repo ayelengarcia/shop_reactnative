@@ -5,4 +5,5 @@ export const colors = {
   white: "#F2F2F2",
 
   border: "#CECECE",
+  dinamica: "#2F845D",
 };

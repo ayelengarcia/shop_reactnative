@@ -12,17 +12,35 @@ const CartItem = ({ cartItem }) => {
     dispatch(removeOneCartItem({ id: cartItem.id }));
   };
 
+  const formatPrice = (price) => {
+    return price.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+  const price_descuento = () => {
+    const total = cartItem.price - (cartItem.price * (cartItem.discountPercentage / 100));
+    return total;
+  }
+
   return (
     <View style={styles.card}>
 
       <View style={styles.textContainer}>
+
         <View>
-          <Text>{cartItem.quantity} {cartItem.title}</Text>
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail">
+            {cartItem.quantity} {cartItem.title}
+          </Text>
           <Text>{cartItem.brand}</Text>
         </View>
 
         <View style={styles.end}>
-          <Text>${cartItem.price}</Text>
+
+          
+          <Text>${formatPrice(cartItem.price)}</Text>
+          <Text style={styles.price}>$ {formatPrice(parseFloat(price_descuento()))}</Text>
+
           <Entypo onPress={handleRemoveCart} name="trash" size={30} color="black" />
         </View>
       </View>
@@ -42,7 +60,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     width: "100%",
-    flexDirection: "row",
+    // flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between"
   },

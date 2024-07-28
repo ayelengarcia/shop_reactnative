@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { StyleSheet, View, ScrollView, FlatList, Text, Image, Dimensions, Animated } from 'react-native';
 import { colors } from '../global/colors';
 
+import banners from "../data/banners.json"
 import CategoryItem from '../components/CategoryItem';
 import ProductItem from '../components/ProductItemHome';
 
@@ -19,12 +20,6 @@ const Home = ({ navigation }) => {
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  const banners = [
-    { uri: 'https://perfugroupar.vtexassets.com/assets/vtex.file-manager-graphql/images/c470a130-ca9a-4685-a1de-02a6615eb285___51b377fca6682e4a2139d9c5f2f59cbe.png' },
-    { uri: 'https://perfugroupar.vtexassets.com/assets/vtex.file-manager-graphql/images/6de9d16f-a0fd-4824-b7f7-5af6785f4eab___d88c08af2bd3cceff44e10f23d920924.png' },
-    { uri: 'https://perfugroupar.vtexassets.com/assets/vtex.file-manager-graphql/images/15a99950-b006-46ae-b4ac-ab6a285a06ce___6cdada60141f75452a71496eed0d092f.jpg' },
-  ];
-
   useEffect(() => {
     (async () => {
       const response = await getSession();
@@ -35,7 +30,7 @@ const Home = ({ navigation }) => {
   const renderBanner = ({ item }) => (
     <Image
       style={styles.banner}
-      source={{ uri: item.uri }}
+      source={{ uri: item }}
       resizeMode="cover"
     />
   );

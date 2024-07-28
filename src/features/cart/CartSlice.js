@@ -25,7 +25,11 @@ export const cartSlice = createSlice({
           return item;
         });
         const total = itemsUpdated.reduce(
-          (acc, currentItem) => acc + currentItem.price * currentItem.quantity,
+          (acc, currentItem) =>
+            acc +
+            currentItem.price *
+              currentItem.quantity *
+              (1 - currentItem.discountPercentage / 100),
           0
         );
         state.value = {
@@ -37,7 +41,11 @@ export const cartSlice = createSlice({
       } else {
         state.value.items.push(payload);
         const total = state.value.items.reduce(
-          (acc, currentItem) => acc + currentItem.price * currentItem.quantity,
+          (acc, currentItem) =>
+            acc +
+            currentItem.price *
+              currentItem.quantity *
+              (1 - currentItem.discountPercentage / 100),
           0
         );
         state.value = {
@@ -62,7 +70,11 @@ export const cartSlice = createSlice({
         .filter((item) => item !== null);
 
       const total = itemsUpdated.reduce(
-        (acc, currentItem) => acc + currentItem.price * currentItem.quantity,
+        (acc, currentItem) =>
+          acc +
+          currentItem.price *
+            currentItem.quantity *
+            (1 - currentItem.discountPercentage / 100),
         0
       );
 
@@ -73,7 +85,9 @@ export const cartSlice = createSlice({
         updateAt: new Date().toLocaleString(),
       };
     },
-    //sin usar - agregas - 1 + para sumar y restar en CartItem
+
+    //sin usar - agregar - 1 + para sumar y restar en CartItem
+    
     //Borra todo el item
     removeCartItem: (state, { payload }) => {
       const itemsUpdated = state.value.items.filter(
