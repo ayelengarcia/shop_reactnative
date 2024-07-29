@@ -34,19 +34,20 @@ Sigue estos pasos para configurar y ejecutar la aplicación localmente:
 3. **Firebase y Google Maps:**
 
   El proyecto cuenta con variables de entorno de prueba disponibles para su uso.
-  En el caso de que quiera configurar las suyas aqui dejo los recursos:
+  En el caso de que quiera configurar las suyas debe:
 
   **Crea un proyecto en Firebase Console. Configura la autenticación, Firestore y cualquier otro servicio de Firebase que uses.**
   **Obtener una clave API desde Google Cloud Platform.**
 
+
 4. **Iniciar aplicacion:**
 
-  ```bash
-  npx expo start
+   ```bash
+   npm expo start
 
 5. **Ejecuta en un dispositivo o emulador:**
 
-  Esta aplicación NO es compatible con navegadores. Usa la aplicación Expo Go en tu dispositivo móvil para escanear el código QR y ejecutar la aplicación. O bien, usa un emulador de Android configurado en tu máquina.
+Esta aplicación NO es compatible con navegadores. Usa la aplicación Expo Go en tu dispositivo móvil para escanear el código QR y ejecutar la aplicación. O bien, usa un emulador de Android configurado en tu máquina.
 
 ## Dependencias
 
