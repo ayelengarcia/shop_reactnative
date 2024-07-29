@@ -36,8 +36,8 @@ Sigue estos pasos para configurar y ejecutar la aplicación localmente:
   El proyecto cuenta con variables de entorno de prueba disponibles para su uso.
   En el caso de que quiera configurar las suyas debe:
 
-  **Crea un proyecto en Firebase Console. Configura la autenticación, Firestore y cualquier otro servicio de Firebase que uses.**
-  **Obtener una clave API desde Google Cloud Platform.**
+  - **Crear un proyecto en Firebase Console y configura la autenticación, Firestore y cualquier otro servicio de Firebase que uses.**
+  - **Obtener una clave API desde Google Cloud Platform.**
 
 
 4. **Iniciar aplicacion:**
@@ -48,6 +48,9 @@ Sigue estos pasos para configurar y ejecutar la aplicación localmente:
 5. **Ejecuta en un dispositivo o emulador:**
 
 Esta aplicación NO es compatible con navegadores. Usa la aplicación Expo Go en tu dispositivo móvil para escanear el código QR y ejecutar la aplicación. O bien, usa un emulador de Android configurado en tu máquina.
+
+6. **Instalar APK:**
+- [APK](https://URI.dev/)
 
 ## Dependencias
 
