@@ -50,7 +50,7 @@ Sigue estos pasos para configurar y ejecutar la aplicación localmente:
 Esta aplicación NO es compatible con navegadores. Usa la aplicación Expo Go en tu dispositivo móvil para escanear el código QR y ejecutar la aplicación. O bien, usa un emulador de Android configurado en tu máquina.
 
 6. **Instalar APK:**
-- [APK](https://URI.dev/)
+- [APK](https://expo.dev/artifacts/eas/9Rj1vJd4BERySWcduDvQBb.apk)
 
 ## Dependencias
 
